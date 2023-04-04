@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 3/04/23.
-//
-
 #ifndef PROYECTO1_BATTLESPACE_MENU_H
 #define PROYECTO1_BATTLESPACE_MENU_H
 
@@ -18,6 +14,11 @@ private:
     RectangleShape* button1;
     RectangleShape* button2;
     RectangleShape* button3;
+    Text* buttonText;
+    Text* buttonText2;
+    Text* buttonText3;
+    Font font;
+
     void initWindow();
 
 public:
