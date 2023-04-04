@@ -11,17 +11,50 @@ Facil::Facil() {
     this->initWindow();
     this->initTextures();
     this->initPlayer();
+
 }
 
 Facil::~Facil() {
     delete this->window;
     delete this->player;
+
+    for (auto &i : this->textures){
+        delete i.second;
+    }
+
+    for (auto *i : this->bullets){
+        delete i;
+    }
+
 }
 
 void Facil::run() {
     while (this->window->isOpen()){
         this->update();
         this->render();
+    }
+}
+
+void Facil::updatePollEvents(){
+    Event e;
+    while (this->window->pollEvent(e)) {
+        if(e.Event::type == Event::Closed)
+            this->window->close();
+        if (e.Event::key.code == Keyboard::Escape)
+            this->window->close();
+    }
+
+}
+
+void Facil::updateInput(){
+    // Mover el jugador
+    if(Keyboard::isKeyPressed(Keyboard::Up))
+        this->player->move(-1.f);
+    if(Keyboard::isKeyPressed(Keyboard::Down))
+        this->player->move(1.f);
+
+    if (Mouse::isButtonPressed(Mouse::Left)){
+        this->bullets.push_back(new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y, 0.f, 0.f,0.f));
     }
 }
 
@@ -37,6 +70,13 @@ void Facil::render() {
     this->window->clear(Color(137, 155, 176, 255));
     //Enseña las varas
     this->player->render(*this->window);
+
+    for (auto *bullet : this->bullets){
+
+        bullet->render(this->window);
+
+    }
+
     this->window->display();
 
 }

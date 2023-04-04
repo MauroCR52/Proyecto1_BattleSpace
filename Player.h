@@ -23,6 +23,8 @@ public:
     Player();
     virtual ~Player();
 
+    const Vector2f& getPost() const;
+
     void move(const float dirY);
     void update();
     void render(RenderTarget& target);
