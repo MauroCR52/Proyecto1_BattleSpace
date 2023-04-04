@@ -1,6 +1,3 @@
-//
-// Created by mauluna52 on 3/04/23.
-//
 #include "iostream"
 #include "Menu.h"
 #include "Facil.h"
@@ -22,7 +19,6 @@ Menu::~Menu() {
     delete this->buttonText3;
 
 }
-
 
 void Menu::run() {
     while (this->window->isOpen()){
@@ -60,7 +56,6 @@ void Menu::render() {
     this->window->draw(*this->buttonText3);
 
     //Enseña la ventana
-
     this->window->display();
 
 }
@@ -80,6 +75,14 @@ void Menu::initWindow() {
 
     button1->setPosition(Vector2f(350, 275));
     button1->setFillColor(Color::Green);
+    buttonText->setPosition(Vector2f(375, 290));
+
+    button2->setPosition(Vector2f(350, 350));
+    button2->setFillColor(Color::Green);
+    buttonText2->setPosition(Vector2f(375, 360));
+
+    button3->setPosition(Vector2f(350, 425));
+    button3->setFillColor(Color::Green);
+    buttonText3->setPosition(Vector2f(375, 435));
+
 }
-
-
