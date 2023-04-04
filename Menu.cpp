@@ -1,6 +1,8 @@
 #include "iostream"
 #include "Menu.h"
 #include "Facil.h"
+#include "Medio.h"
+#include "Dificil.h"
 
 using namespace std;
 using namespace sf;
@@ -35,11 +37,23 @@ void Menu::update() {
         if (e.Event::key.code == Keyboard::Escape)
             this->window->close();
         if (e.Event::type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left && this->button1->getGlobalBounds().contains(e.mouseButton.x, e.mouseButton.y)){
-            this->button1->setFillColor(Color::Blue);
             this->window->close();
             Facil facil;
             facil.run();
         }
+        if (e.Event::type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left && this->button2->getGlobalBounds().contains(e.mouseButton.x, e.mouseButton.y)){
+            this->button2->setFillColor(Color::Blue);
+            this->window->close();
+            Medio medio;
+            medio.run();
+        }
+        if (e.Event::type == Event::MouseButtonPressed && e.mouseButton.button == Mouse::Left && this->button3->getGlobalBounds().contains(e.mouseButton.x, e.mouseButton.y)){
+            this->button3->setFillColor(Color::Blue);
+            this->window->close();
+            Dificil dificil;
+            dificil.run();
+        }
+
     }
 }
 

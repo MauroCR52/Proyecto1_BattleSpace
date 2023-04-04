@@ -11,8 +11,10 @@ using namespace sf;
 class Player {
 
 private:
-    Sprite sprite;
     Texture texture;
+    Sprite sprite;
+
+    float movementSpeed;
 
     void initTexture();
     void initSprite();
@@ -21,6 +23,9 @@ public:
     Player();
     virtual ~Player();
 
+    const Vector2f& getPost() const;
+
+    void move(const float dirY);
     void update();
     void render(RenderTarget& target);
 
