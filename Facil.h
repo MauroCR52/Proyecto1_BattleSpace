@@ -1,7 +1,9 @@
 #ifndef PROYECTO1_BATTLESPACE_FACIL_H
 #define PROYECTO1_BATTLESPACE_FACIL_H
+#include<map>
 #include "Player.h"
 using namespace sf;
+using namespace std;
 
 class Facil {
 private:
@@ -10,6 +12,7 @@ private:
 
     Font font;
     void initWindow();
+    void initTextures();
     void initPlayer();
 
 public:

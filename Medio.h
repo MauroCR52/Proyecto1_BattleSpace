@@ -7,15 +7,19 @@ using namespace sf;
 class Medio {
 private:
     RenderWindow* window;
-    Font font;
+    Player* player;
 
+    Font font;
     void initWindow();
+    void initPlayer();
 
 public:
     Medio();
     virtual ~Medio();
 
     void run();
+    void updatePollEvents();
+    void updateInput();
     void update();
     void render();
 

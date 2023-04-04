@@ -9,6 +9,7 @@ void Facil::initWindow() {
 
 Facil::Facil() {
     this->initWindow();
+    this->initTextures();
     this->initPlayer();
 }
 
@@ -25,15 +26,11 @@ void Facil::run() {
 }
 
 void Facil::update() {
-    Event e;
-    while (this->window->pollEvent(e)) {
-        if(e.Event::type == Event::Closed)
-            this->window->close();
-        if (e.Event::key.code == Keyboard::Escape)
-            this->window->close();
 
-    }
-    // Mover el jugador
+    this->updatePollEvents();
+    this->updateInput();
+    this->updateBullets();
+
 }
 
 void Facil::render() {
@@ -46,5 +43,22 @@ void Facil::render() {
 
 void Facil::initPlayer() {
     this->player = new Player();
+}
+
+void Facil::initTextures() {
+
+    this->textures["BULLET"] = new Texture();
+    this->textures["BULLET"]->loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/firebullet.png");
+
+}
+
+void Facil::updateBullets() {
+
+    for (auto *bullet : this->bullets){
+
+        bullet->update();
+
+    }
+
 }
 
