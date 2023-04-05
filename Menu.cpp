@@ -19,6 +19,8 @@ Menu::~Menu() {
     delete this->buttonText;
     delete this->buttonText2;
     delete this->buttonText3;
+    delete this->TitleText;
+    delete this->indicaciones;
 
 }
 
@@ -68,6 +70,8 @@ void Menu::render() {
     this->window->draw(*this->buttonText);
     this->window->draw(*this->buttonText2);
     this->window->draw(*this->buttonText3);
+    this->window->draw(*this->TitleText);
+    this->window->draw(*this->indicaciones);
 
     //Enseña la ventana
     this->window->display();
@@ -86,7 +90,11 @@ void Menu::initWindow() {
     this->buttonText = new Text("Facil", this->font, 20);
     this->buttonText2 = new Text("Medio", this->font, 20);
     this->buttonText3 = new Text("Dificil", this->font, 20);
+    this->TitleText = new Text("BATTLESPACE", this->font, 40);
+    this->indicaciones = new Text("Seleccione la dificultad", this->font, 30);
 
+    TitleText->setPosition(Vector2f(270, 100));
+    indicaciones->setPosition(Vector2f(245, 210));
     button1->setPosition(Vector2f(350, 275));
     button1->setFillColor(Color::Green);
     buttonText->setPosition(Vector2f(375, 290));

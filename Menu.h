@@ -17,6 +17,8 @@ private:
     Text* buttonText;
     Text* buttonText2;
     Text* buttonText3;
+    Text* TitleText;
+    Text* indicaciones;
     Font font;
 
     void initWindow();
