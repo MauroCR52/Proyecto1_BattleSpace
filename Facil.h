@@ -3,6 +3,8 @@
 #include<map>
 #include "Player.h"
 #include "Bullet.h"
+#include <SFML/System/Clock.hpp>
+
 
 using namespace sf;
 using namespace std;

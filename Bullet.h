@@ -9,7 +9,9 @@
 #include <SFML/System/Clock.hpp>
 #include "iostream"
 
+
 using namespace sf;
+using namespace std;
 
 class Bullet {
 private:
