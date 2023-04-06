@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estrategia>
+    <numero>4</numero>
+    <poder>
+        <nombre>Poder4</nombre>
+        <descripcion>Regenerar las balas desde 0</descripcion>
+    </poder>
+</estrategia>

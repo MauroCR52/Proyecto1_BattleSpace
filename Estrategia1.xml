@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estrategia>
+    <numero>1</numero>
+    <poder>
+            <nombre>Poder1</nombre>
+            <descripcion>Disparar balas mas rapido</descripcion>
+    </poder>
+</estrategia>
