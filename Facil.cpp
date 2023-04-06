@@ -1,5 +1,8 @@
 #include "iostream"
 #include "Facil.h"
+#include "Bullet.h"
+#include <chrono>
+#include <thread>
 
 void Facil::initWindow() {
     this->window = new RenderWindow(VideoMode(800, 600), "Facil - Battlespace", Style::Titlebar | Style::Close);
@@ -55,6 +58,7 @@ void Facil::updatePollEvents(){
             this->window->close();
     }
 
+
 }
 
 void Facil::updateInput(){
@@ -66,6 +70,41 @@ void Facil::updateInput(){
     if (this->window->isOpen() && this->player->canAttack()){
         this->bullets.push_back(new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y + 18.f, 1.f, 0.f,5.f));
     }
+
+    //estrategia 1
+    if (Keyboard::isKeyPressed(Keyboard::Q)){
+        shootFaster = true;
+        this->player->setAttackCooldownMax(40.f);
+        //arreglarlo para que sea de acuerdo a la velocidad de la bala
+    }
+
+    //estrategia 2
+    if (Keyboard::isKeyPressed(Keyboard::W)){
+        moveFaster = true;
+        this->player->setMovementSpeed(7.f);
+        //durante 5 segundos y que vuelva a la velocidad normal
+    }
+
+    //estrategia 3
+    if (Keyboard::isKeyPressed(Keyboard::E)){
+        freezeEnemies = true;
+        //poner la posicion de los enemigos estatica
+        //pasen 5 segundos y que vuelva a la normalidad
+    }
+
+    //estrategia 4
+    if (Keyboard::isKeyPressed(Keyboard::R)){
+        regenerateBullets = true;
+        //poner el counter de balas desde 0
+        //durante 5 segundos y que vuelva a la velocidad normal
+    }
+
+    //reiniciar las estrategias luego de 5 segundos
+    //shootFaster = false;
+    //moveFaster = false;
+    //freezeEnemies = false;
+    //regenerateBullets = false;
+
 }
 
 void Facil::update() {

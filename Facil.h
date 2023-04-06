@@ -1,6 +1,6 @@
 #ifndef PROYECTO1_BATTLESPACE_FACIL_H
 #define PROYECTO1_BATTLESPACE_FACIL_H
-#include<map>
+#include <map>
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
