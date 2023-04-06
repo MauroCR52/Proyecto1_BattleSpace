@@ -73,7 +73,7 @@ void Menu::render() {
     this->window->draw(*this->TitleText);
     this->window->draw(*this->indicaciones);
 
-    //Enseña la ventana
+
     this->window->display();
 
 }

@@ -14,7 +14,6 @@ Player::~Player() {
 
 }
 
-//Funciones
 void Player::update() {
 
 }
@@ -29,11 +28,10 @@ void Player::initTexture() {
     if(!this->texture.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/player.png")){
         cout << "ERROR::PLAYER::INITTEXTURE::Could not load texture file." << endl;
     }
-
 }
+
 void Player::initSprite() {
     this->sprite.setTexture(this->texture);
-
     this->sprite.scale(0.1f, 0.1f);
 }
 
@@ -44,4 +42,3 @@ void Player::move(const float dirY) {
 const Vector2f &Player::getPost() const {
     return this->sprite.getPosition();
 }
-
