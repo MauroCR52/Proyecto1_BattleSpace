@@ -16,6 +16,10 @@ private:
 
     float movementSpeed;
 
+    float attackCooldown;
+    float attackCooldownMax;
+
+    void initVariables();
     void initTexture();
     void initSprite();
 
@@ -26,6 +30,9 @@ public:
     const Vector2f& getPost() const;
 
     void move(const float dirY);
+    const bool canAttack();
+
+    void updateAttack();
     void update();
     void render(RenderTarget& target);
 
