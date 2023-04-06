@@ -1,5 +1,5 @@
 #include "Bullet.h"
-
+#include "Collector.h"
 Bullet::Bullet(){
 }
 
@@ -28,3 +28,18 @@ const FloatRect Bullet::getBounds() const {
     return this->shape.getGlobalBounds();
 }
 
+void Bullet::setReciclaje(Collector *collector) {
+    reciclaje = collector;
+}
+
+void Bullet::operator delete(void *p) {
+    Bullet* nodeToDelete = static_cast<Bullet*>(p);
+    if (reciclaje != nullptr){
+        reciclaje->insertNode(nodeToDelete);
+    }
+    else{
+        ::operator delete(nodeToDelete);
+    }
+}
+
+Collector* Bullet::reciclaje = nullptr;

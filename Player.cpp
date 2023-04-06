@@ -54,10 +54,23 @@ const bool Player::canAttack() {
 
 void Player::initVariables() {
     this->movementSpeed = 2.f;
-    this->attackCooldownMax = 10.f;
+    this->attackCooldownMax = 60.f;
     this->attackCooldown = this->attackCooldownMax;
 }
 
 const Vector2f &Player::getPost() const {
     return this->sprite.getPosition();
+}
+
+const FloatRect Player::getBounds() const {
+    return this->sprite.getGlobalBounds();
+}
+
+void Player::setMovementSpeed(float movementSpeed) {
+    Player::movementSpeed = movementSpeed;
+}
+
+void Player::setAttackCooldownMax(float AttackCooldownMax) {
+    Player::attackCooldownMax = AttackCooldownMax;
+
 }

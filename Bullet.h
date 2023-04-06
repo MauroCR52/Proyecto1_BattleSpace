@@ -13,13 +13,19 @@
 using namespace sf;
 using namespace std;
 
+class Collector;
+
 class Bullet {
+    friend class Collector;
+
 private:
 
     Sprite shape;
 
     Vector2f direction;
     float movementSpeed;
+
+    Bullet* next;
 
 public:
     Bullet();
@@ -30,6 +36,11 @@ public:
 
     void update();
     void render(RenderTarget* target);
+    static Collector* reciclaje;
+
+    static void setReciclaje(Collector* collector);
+
+    void operator delete(void* p);
 
 };
 

@@ -16,6 +16,8 @@ private:
 
     float movementSpeed;
 
+
+
     float attackCooldown;
     float attackCooldownMax;
 
@@ -28,10 +30,12 @@ public:
     virtual ~Player();
 
     const Vector2f& getPost() const;
+    const FloatRect getBounds() const;
 
     void move(const float dirY);
     const bool canAttack();
-
+    void setMovementSpeed(float movementSpeed);
+    void setAttackCooldownMax(float AttackCooldownMax);
     void updateAttack();
     void update();
     void render(RenderTarget& target);
