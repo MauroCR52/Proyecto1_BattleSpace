@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estrategia>
+    <numero>3</numero>
+    <poder>
+        <nombre>Poder3</nombre>
+        <descripcion>Congelar a los enemigos durante 5 segundos</descripcion>
+    </poder>
+</estrategia>

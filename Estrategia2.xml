@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estrategia>
+    <numero>2</numero>
+    <poder>
+        <nombre>Poder2</nombre>
+        <descripcion>Mover la nave mas rapido</descripcion>
+    </poder>
+</estrategia>
