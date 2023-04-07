@@ -31,6 +31,8 @@ private:
     Texture backgroundTex;
     Sprite background;
 
+    Clock clock; //clock para estrategias
+
     unsigned balas;
     unsigned puntos;
     unsigned cant_enemigos;
@@ -55,6 +57,9 @@ private:
     bool moveFaster = false;
     bool freezeEnemies = false;
     bool regenerateBullets = false;
+    float elapsedTime = 0.f;
+    bool shootFasterKeyPressed = false;
+    bool wkeyPressed = false;
 
     vector<Enemy*> enemies;
     vector<EnemyR*> enemiesR;

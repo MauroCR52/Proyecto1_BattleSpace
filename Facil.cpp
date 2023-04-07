@@ -8,6 +8,8 @@ void Facil::initWindow() {
     this->window = new RenderWindow(VideoMode(800, 600), "Facil - Battlespace", Style::Titlebar | Style::Close);
     this->window->setFramerateLimit(144);
     this->window->setVerticalSyncEnabled(false);
+
+
 }
 
 Facil::Facil() {
@@ -95,16 +97,45 @@ void Facil::updateInput(){
     }
     //estrategia 1
     if (Keyboard::isKeyPressed(Keyboard::Q)){
-        shootFaster = true;
-        this->player->setAttackCooldownMax(40.f);
-        //arreglarlo para que sea de acuerdo a la velocidad de la bala
+        if (!shootFasterKeyPressed){
+            shootFasterKeyPressed = true;
+            shootFaster = true;
+            this->player->setAttackCooldownMax(40.f);
+            elapsedTime = 0.f;
+        }
+        else {
+            shootFasterKeyPressed = false;
+        }
+        if (shootFaster){
+            elapsedTime += clock.restart().asMilliseconds();
+            if (elapsedTime >= 5000.f){
+                shootFaster = false;
+                this->player->setAttackCooldownMax(60.f);
+            }
+        }
     }
 
     //estrategia 2
     if (Keyboard::isKeyPressed(Keyboard::W)){
-        moveFaster = true;
-        this->player->setMovementSpeed(7.f);
-        //durante 5 segundos y que vuelva a la velocidad normal
+
+        if (!wkeyPressed){
+            wkeyPressed = true;
+            moveFaster = true;
+            this->player->setMovementSpeed(7.f);
+            elapsedTime = 0.f;
+
+        } else {
+            wkeyPressed = false;
+        }
+        if (moveFaster){
+            cout << elapsedTime << endl;
+            elapsedTime += clock.restart().asMilliseconds();
+            if (elapsedTime >= 5000.f){
+                moveFaster = false;
+                this->player->setMovementSpeed(2.f);
+            }
+        }
+
     }
 
     //estrategia 3
@@ -120,12 +151,6 @@ void Facil::updateInput(){
         //poner el counter de balas desde 0
         //durante 5 segundos y que vuelva a la velocidad normal
     }
-
-    //reiniciar las estrategias luego de 5 segundos
-    //shootFaster = false;
-    //moveFaster = false;
-    //freezeEnemies = false;
-    //regenerateBullets = false;
 
 }
 
