@@ -42,4 +42,13 @@ void Bullet::operator delete(void *p) {
     }
 }
 
+void *Bullet::operator new(size_t size) {
+    if (reciclaje == nullptr || reciclaje->getSize() == 0) {
+        return ::operator new(size);
+    } else {
+        return reciclaje->giveNode();
+    }
+}
+
 Collector* Bullet::reciclaje = nullptr;
+

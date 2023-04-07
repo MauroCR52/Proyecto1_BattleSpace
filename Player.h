@@ -16,8 +16,7 @@ private:
 
     float movementSpeed;
 
-
-
+    int damage;
     float attackCooldown;
     float attackCooldownMax;
 
@@ -32,6 +31,10 @@ public:
     const Vector2f& getPost() const;
     const FloatRect getBounds() const;
 
+    void setPosition(const Vector2f pos);
+    void setPosition(const float x, const float y);
+    int getDamage();
+    void setDamage(int Dmg);
     void move(const float dirY);
     const bool canAttack();
     void setMovementSpeed(float movementSpeed);

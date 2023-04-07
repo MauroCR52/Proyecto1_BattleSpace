@@ -17,11 +17,7 @@ private:
     Texture texture;
     Sprite sprite;
 
-    int type;
     int hp;
-    int hpMax;
-    int damage;
-    int points;
 
     float move_y = (rand() % 2 == 0) ? 1.5f : -1.5f;
 
@@ -39,6 +35,8 @@ public:
     const Vector2f& getPost() const;
 
     void update();
+    int gethp();
+    void setHp(int Hp);
     void render(RenderTarget& target);
     void setMoveY(float moveY);
     float getMoveY() const;

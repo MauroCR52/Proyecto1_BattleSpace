@@ -19,12 +19,7 @@ Enemy::~Enemy() {
 
 
 void Enemy::initVariables() {
-    this->type = 0;
-    this->hpMax = 10;
-    this->hp = 0;
-    this->damage = 1;
-    this->points = 5;
-
+    this->hp = 10;
 }
 
 void Enemy::initTexture() {
@@ -53,5 +48,12 @@ void Enemy::update() {
 
 const FloatRect Enemy::getBounds() const {
     return this->sprite.getGlobalBounds();
+}
+int Enemy::gethp() {
+    return hp;
+}
+
+void Enemy::setHp(int Hp) {
+    hp = Hp;
 }
 

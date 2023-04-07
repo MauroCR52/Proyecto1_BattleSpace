@@ -19,12 +19,7 @@ EnemyR::~EnemyR() {
 
 
 void EnemyR::initVariables() {
-    this->type = 0;
-    this->hpMax = 10;
-    this->hp = 0;
-    this->damage = 1;
-    this->points = 5;
-
+    this->hp = 10;
 }
 
 void EnemyR::initTexture() {
@@ -62,5 +57,13 @@ void EnemyR::setMoveY(float moveY) {
 
 float EnemyR::getMoveY() const {
     return move_y;
+}
+
+int EnemyR::gethp() {
+    return hp;
+}
+
+void EnemyR::setHp(int Hp) {
+    hp = Hp;
 }
 

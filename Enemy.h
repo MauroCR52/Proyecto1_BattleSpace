@@ -17,11 +17,7 @@ private:
     Texture texture;
     Sprite sprite;
 
-    int type;
     int hp;
-    int hpMax;
-    int damage;
-    int points;
 
     void initVariables();
     void initTexture();
@@ -35,6 +31,8 @@ public:
     const FloatRect getBounds() const;
 
     const Vector2f& getPost() const;
+    int gethp();
+    void setHp(int Hp);
 
     void update();
     void render(RenderTarget& target);

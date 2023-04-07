@@ -1,6 +1,8 @@
 #ifndef PROYECTO1_BATTLESPACE_FACIL_H
 #define PROYECTO1_BATTLESPACE_FACIL_H
 #include <map>
+#include <string>
+#include <sstream>
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
@@ -13,24 +15,40 @@ using namespace std;
 class Facil {
 private:
 
-    map <string, Texture*> textures;
-    vector<Bullet*> bullets;
+    map<string, Texture *> textures;
+    vector<Bullet *> bullets;
 
-    RenderWindow* window;
-    Player* player;
+    RenderWindow *window;
+    Player *player;
 
     Font font;
     Text bulletsCont;
     Text collectorCont;
+    Text enemiesRest;
+    Text oleadaCont;
+    Text pointsCont;
 
     Texture backgroundTex;
     Sprite background;
 
+    unsigned balas;
+    unsigned puntos;
+    unsigned cant_enemigos;
+    unsigned oleadas;
+    unsigned collector;
+    unsigned totalEnemies;
+
     float spawnTimer;
     float spawnTimerMax;
 
+    float delayTimer;
+    float delayTimerMax;
+
     float spawnTimerR;
     float spawnTimerMaxR;
+
+    bool delay;
+    bool canSpawn;
 
     //para los paged power
     bool shootFaster = false;
@@ -45,7 +63,12 @@ private:
     void initTextures();
     void initBulletGUI();
     void initBulletCollectorGUI();
+    void initPointGUI();
+    void initCantEnemies();
+    void initOleadasGUI();
     void initBackground();
+    void initSystems();
+    void initDelay();
     void initPlayer();
     void initEnemies();
     void initEnemiesR();
@@ -58,9 +81,12 @@ public:
     void updatePollEvents();
     void updateInput();
     void updateGUI();
+    void updateBackground();
+    void updateCollision();
     void updateBullets();
     void updateEnemiesAndCombat();
     void updateEnemiesRAndCombat();
+    void updateDelay();
     void update();
     void renderGUI();
     void renderBackground();

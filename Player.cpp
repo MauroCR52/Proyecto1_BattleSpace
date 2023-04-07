@@ -56,6 +56,7 @@ void Player::initVariables() {
     this->movementSpeed = 2.f;
     this->attackCooldownMax = 60.f;
     this->attackCooldown = this->attackCooldownMax;
+    this->damage = 10;
 }
 
 const Vector2f &Player::getPost() const {
@@ -74,3 +75,20 @@ void Player::setAttackCooldownMax(float AttackCooldownMax) {
     Player::attackCooldownMax = AttackCooldownMax;
 
 }
+
+void Player::setPosition(const Vector2f pos) {
+    this->sprite.setPosition(pos);
+}
+
+void Player::setPosition(const float x, const float y) {
+    this->sprite.setPosition(x, y);
+}
+
+int Player::getDamage() {
+    return damage;
+}
+
+void Player::setDamage(int Dmg) {
+    damage = Dmg;
+}
+

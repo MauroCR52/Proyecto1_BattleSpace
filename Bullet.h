@@ -40,6 +40,8 @@ public:
     static void setReciclaje(Collector* collector);
 
     void operator delete(void* p);
+    void* operator new(size_t size);
+
 
 };
 

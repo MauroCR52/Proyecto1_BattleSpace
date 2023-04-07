@@ -20,7 +20,8 @@ public:
     Collector();
     virtual ~Collector();
     void insertNode(Bullet* bullet);
-
+    int getSize();
+    Bullet* giveNode();
 };
 
 

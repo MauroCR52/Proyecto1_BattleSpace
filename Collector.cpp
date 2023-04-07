@@ -25,3 +25,20 @@ void Collector::insertNode(Bullet *bullet) {
 Collector::~Collector() {
 
 }
+
+int Collector::getSize() {
+    return size;
+}
+
+Bullet *Collector::giveNode() {
+    if (Chead == nullptr){
+        return nullptr;
+    } else{
+        Bullet* nodeToGive = Chead;
+        Chead = Chead->next;
+        nodeToGive->next = nullptr;
+        size--;
+        return nodeToGive;
+    }
+
+}
