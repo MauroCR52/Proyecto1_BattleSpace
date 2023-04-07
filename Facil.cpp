@@ -15,6 +15,7 @@ Facil::Facil() {
     this->initTextures();
     this->initBulletGUI();
     this->initBulletCollectorGUI();
+    this->initBackground();
     this->initPlayer();
     this->initEnemies();
     this->initEnemiesR();
@@ -121,6 +122,9 @@ void Facil::update() {
 void Facil::render() {
     this->window->clear(Color(137, 155, 176, 255));
     //Enseña las varas
+
+    this->renderBackground();
+
     this->player->render(*this->window);
 
     for (auto *bullet : this->bullets){
@@ -163,7 +167,6 @@ void Facil::updateBullets() {
             delete this->bullets.at(counter);
             this->bullets.erase(this->bullets.begin() + counter);
             --counter;
-            //cout << this->bullets.size() << endl;
         }
         ++counter;
     }
@@ -278,3 +281,16 @@ void Facil::renderGUI() {
     this->window->draw(this->bulletsCont);
     this->window->draw(this->collectorCont);
 }
+
+void Facil::initBackground() {
+    if (!this->backgroundTex.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/Sky.jpg")){
+        cout << "ERROR::FACIL::COULD NOT LOAD BACKGROUND TEXTURE" << endl;
+    }
+    this->background.setTexture(this->backgroundTex);
+    this->background.scale(1.5f, 1.5f);
+}
+
+void Facil::renderBackground() {
+    this->window->draw(this->background);
+}
+

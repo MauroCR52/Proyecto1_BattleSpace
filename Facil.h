@@ -23,6 +23,9 @@ private:
     Text bulletsCont;
     Text collectorCont;
 
+    Texture backgroundTex;
+    Sprite background;
+
     float spawnTimer;
     float spawnTimerMax;
 
@@ -42,6 +45,7 @@ private:
     void initTextures();
     void initBulletGUI();
     void initBulletCollectorGUI();
+    void initBackground();
     void initPlayer();
     void initEnemies();
     void initEnemiesR();
@@ -59,6 +63,7 @@ public:
     void updateEnemiesRAndCombat();
     void update();
     void renderGUI();
+    void renderBackground();
     void render();
 
 };
