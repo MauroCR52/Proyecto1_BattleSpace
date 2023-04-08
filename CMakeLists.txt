@@ -8,3 +8,5 @@ add_executable(Proyecto1_BattleSpace main.cpp Menu.cpp Menu.h Facil.cpp Facil.h 
 find_package(SFML 2.5 COMPONENTS graphics window REQUIRED)
 target_link_libraries(Proyecto1_BattleSpace sfml-graphics sfml-window)
 
+include_directories(/usr/include/libserial/)
+target_link_libraries(Proyecto1_BattleSpace serial)

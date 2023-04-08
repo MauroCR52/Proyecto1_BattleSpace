@@ -4,12 +4,11 @@
 #include <chrono>
 #include <thread>
 
+using namespace LibSerial;
 void Facil::initWindow() {
     this->window = new RenderWindow(VideoMode(800, 600), "Facil - Battlespace", Style::Titlebar | Style::Close);
     this->window->setFramerateLimit(144);
     this->window->setVerticalSyncEnabled(false);
-
-
 }
 
 Facil::Facil() {
@@ -51,6 +50,7 @@ Facil::~Facil() {
 }
 
 void Facil::run() {
+
     while (this->window->isOpen()){
         if (this->oleadas <= 5){
             this->update();
@@ -75,6 +75,11 @@ void Facil::updatePollEvents(){
 }
 
 void Facil::updateInput(){
+    if (this->oleadas == 1){
+        char soundAction = '1';
+        boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+    }
+
     // Mover el jugador
     if(Keyboard::isKeyPressed(Keyboard::Up))
         this->player->move(-1.f);
@@ -155,6 +160,7 @@ void Facil::updateInput(){
 }
 
 void Facil::update() {
+    this->updateArduino();
 
     this->updatePollEvents();
     this->updateInput();
@@ -166,6 +172,7 @@ void Facil::update() {
     this->updateEnemiesRAndCombat();
     this->updateGUI();
     this->updateBackground();
+
 }
 
 void Facil::render() {
@@ -230,7 +237,7 @@ void Facil::updateBullets() {
 
 }
 void Facil::initDelay() {
-    this->delayTimerMax = 400.f;
+    this->delayTimerMax = 200.f;
     this->delayTimer = 0.f;
 }
 
@@ -276,13 +283,15 @@ void Facil::updateEnemiesRAndCombat() {
                 }
             }
         }
-
         if(!enemy_removed){
             // Remover nave cuando llega al otro lado de la ventana (Implementar buzzer de arduino)
             if (this->enemiesR[i]->getBounds().left < 0.f)
             {
                 //Enviar mensaje a Arduino
                 this->enemiesR.erase(this->enemiesR.cbegin() + i);
+                char soundAction = 'S';
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+
             }
             if (this->enemiesR[i]->getBounds().top < 0.f && this->enemiesR[i]->getMoveY() < 0){
                 this->enemiesR[i]->setMoveY(1.5f);
@@ -330,8 +339,9 @@ void Facil::updateEnemiesAndCombat() {
             {
                 //Enviar mensaje a Arduino
                 this->enemies.erase(this->enemies.cbegin() + i);
+                char soundAction = 'S';
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
             }
-
         }
     }
 }
@@ -441,6 +451,7 @@ void Facil::updateCollision() {
 }
 
 void Facil::initSystems() {
+    this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
     this->cant_enemigos = 7;
     this->oleadas = 1;
     this->balas = 50;
@@ -461,12 +472,66 @@ void Facil::updateDelay() {
                 this->delay = false;
                 this->canSpawn = true;
                 this->oleadas++;
+                if (this->oleadas == 2){
+                    char soundAction = '2';
+                    boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                }
+                if (this->oleadas == 3){
+                    char soundAction = '3';
+                    boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                }
+                if (this->oleadas == 4){
+                    char soundAction = '4';
+                    boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                }
+                if (this->oleadas == 5){
+                    char soundAction = '5';
+                    boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                }
                 this->totalEnemies += 3;
                 this->cant_enemigos = this->totalEnemies;
                 cout << "Comienza nueva oleada" << endl;
                 this->delayTimer = 0.f;
             }
         }
+    }
+}
+
+void Facil::updateArduino() {
+    boost::asio::streambuf buffer;
+    boost::asio::read_until(port, buffer, '\n');
+    std::string message;
+    std::istream input_stream(&buffer);
+    std::getline(input_stream, message);
+    if (message.find("0") != string::npos){
+        this->player->setAttackCooldownMax(60.f);
+    }
+    else if (message.find("1") != string::npos){
+        this->player->setAttackCooldownMax(54.f);
+    }
+    else if (message.find("2") != string::npos){
+        this->player->setAttackCooldownMax(48.f);
+    }
+    else if (message.find("3") != string::npos){
+        this->player->setAttackCooldownMax(42.f);
+    }
+    else if (message.find("4") != string::npos){
+        this->player->setAttackCooldownMax(36.f);
+    }
+    else if (message.find("5") != string::npos){
+        this->player->setAttackCooldownMax(30.f);
+    }
+    else if (message.find("6") != string::npos){
+        this->player->setAttackCooldownMax(24.f);
+    }
+    else if (message.find("7") != string::npos){
+        this->player->setAttackCooldownMax(18.f);
+    }
+    else if (message.find("8") != string::npos){
+        this->player->setAttackCooldownMax(12.f);
+    }
+    else if (message.find("9") != string::npos){
+        this->player->setAttackCooldownMax(6.f);
     }
 }
 

@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 #include <sstream>
+#include <SerialStream.h>
+#include <boost/asio.hpp>
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
@@ -11,6 +13,7 @@
 
 using namespace sf;
 using namespace std;
+using namespace LibSerial;
 
 class Facil {
 private:
@@ -27,6 +30,11 @@ private:
     Text enemiesRest;
     Text oleadaCont;
     Text pointsCont;
+
+    //SerialStream arduino;
+    boost::asio::io_service io;
+    boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
+    string input;
 
     Texture backgroundTex;
     Sprite background;
@@ -84,6 +92,7 @@ public:
 
     void run();
     void updatePollEvents();
+    void updateArduino();
     void updateInput();
     void updateGUI();
     void updateBackground();
