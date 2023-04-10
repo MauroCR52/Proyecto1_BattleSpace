@@ -92,7 +92,9 @@ public:
 
     void run();
     void updatePollEvents();
+
     void updateArduino();
+
     void updateInput();
     void updateGUI();
     void updateBackground();

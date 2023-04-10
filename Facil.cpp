@@ -454,7 +454,7 @@ void Facil::initSystems() {
     this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
     this->cant_enemigos = 7;
     this->oleadas = 1;
-    this->balas = 50;
+    this->balas = 100;
     this->collector = 0;
     this->totalEnemies = 7;
     this->puntos = 0;
@@ -533,6 +533,14 @@ void Facil::updateArduino() {
     else if (message.find("9") != string::npos){
         this->player->setAttackCooldownMax(6.f);
     }
+    else if (message.find("U") != string::npos){
+        this->player->move(-1.f);
+    }
+    else if (message.find("D") != string::npos){
+        this->player->move(1.f);
+    }
+
 }
+
 
 
