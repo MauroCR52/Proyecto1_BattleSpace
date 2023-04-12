@@ -31,9 +31,8 @@ private:
     Text oleadaCont;
     Text pointsCont;
 
-    //SerialStream arduino;
-    boost::asio::io_service io;
-    boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
+    //boost::asio::io_service io;
+    //boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
     string input;
 
     Texture backgroundTex;
@@ -93,7 +92,7 @@ public:
     void run();
     void updatePollEvents();
 
-    void updateArduino();
+    //void updateArduino();
 
     void updateInput();
     void updateGUI();

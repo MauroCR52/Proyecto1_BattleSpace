@@ -77,7 +77,7 @@ void Facil::updatePollEvents(){
 void Facil::updateInput(){
     if (this->oleadas == 1){
         char soundAction = '1';
-        boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+        //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
     }
 
     // Mover el jugador
@@ -160,7 +160,8 @@ void Facil::updateInput(){
 }
 
 void Facil::update() {
-    this->updateArduino();
+
+    //this->updateArduino();
 
     this->updatePollEvents();
     this->updateInput();
@@ -290,7 +291,7 @@ void Facil::updateEnemiesRAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemiesR.erase(this->enemiesR.cbegin() + i);
                 char soundAction = 'S';
-                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
 
             }
             if (this->enemiesR[i]->getBounds().top < 0.f && this->enemiesR[i]->getMoveY() < 0){
@@ -340,7 +341,7 @@ void Facil::updateEnemiesAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemies.erase(this->enemies.cbegin() + i);
                 char soundAction = 'S';
-                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
             }
         }
     }
@@ -451,7 +452,7 @@ void Facil::updateCollision() {
 }
 
 void Facil::initSystems() {
-    this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
+    //this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
     this->cant_enemigos = 7;
     this->oleadas = 1;
     this->balas = 100;
@@ -472,6 +473,8 @@ void Facil::updateDelay() {
                 this->delay = false;
                 this->canSpawn = true;
                 this->oleadas++;
+
+                /**
                 if (this->oleadas == 2){
                     char soundAction = '2';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
@@ -488,6 +491,7 @@ void Facil::updateDelay() {
                     char soundAction = '5';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
                 }
+                */
                 this->totalEnemies += 3;
                 this->cant_enemigos = this->totalEnemies;
                 cout << "Comienza nueva oleada" << endl;
@@ -496,7 +500,7 @@ void Facil::updateDelay() {
         }
     }
 }
-
+/**
 void Facil::updateArduino() {
     boost::asio::streambuf buffer;
     boost::asio::read_until(port, buffer, '\n');
@@ -541,6 +545,7 @@ void Facil::updateArduino() {
     }
 
 }
+*/
 
 
 
