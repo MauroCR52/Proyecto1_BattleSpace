@@ -16,17 +16,25 @@ public:
     int time;
     float cost;
 
-    //para paged powers
-    Power();
-    virtual ~Power();
-    void asignarArchivo1(int valor);
-    void asignarArchivo2(float valor);
+    //archivos xml con sus punteros
+    string ArchivoXml1 = "Estrategia1.xml";
+    string ArchivoXml2 = "Estrategia2.xml";
+    string ArchivoXml3 = "Estrategia3.xml";
+    string ArchivoXml4 = "Estrategia4.xml";
+
+    string* ArchivoXml1Ptr = &ArchivoXml1;
+    string* ArchivoXml2Ptr = &ArchivoXml2;
+    string* ArchivoXml3Ptr = &ArchivoXml3;
+    string* ArchivoXml4Ptr = &ArchivoXml4;
 
 
-   /* static Power ReadFromXml(const char* filename) {
+    static Power ReadFromXml(const char*) {
         Power power;
         XMLDocument doc;
-        doc.LoadFile(filename);
+        doc.LoadFile("Estrategia1.xml");
+        doc.LoadFile("Estrategia2.xml");
+        doc.LoadFile("Estrategia3.xml");
+        doc.LoadFile("Estrategia4.xml");
 
         XMLElement* power_element = doc.FirstChildElement("Estrategias")->FirstChildElement("Power");
         if (power_element) {
@@ -49,13 +57,9 @@ public:
                 iss >> power.cost;
             }
         }
-
         return power;
-    }*/
-private:
-    //para paged powers
-    int* valor1;
-    float* valor2;
+    }
+
 };
 
 class Estrategias {

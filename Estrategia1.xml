@@ -3,7 +3,7 @@
     <Power>
         <name>disparaRapido</name>
         <description>La nave dispara mas rapido</description>
-        <time>5</time>
+        <time>5 segundos</time>
         <cost>espacio en memoria por definir</cost>
     </Power>
 </Estrategias>

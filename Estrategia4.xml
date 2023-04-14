@@ -3,7 +3,7 @@
     <Power>
         <name>regeneraBalas</name>
         <description>Las balas se regeneran como cuando inicia el nivel</description>
-        <time>5</time>
+        <time>5 segundos</time>
         <cost>espacio en memoria por definir</cost>
     </Power>
 </Estrategias>

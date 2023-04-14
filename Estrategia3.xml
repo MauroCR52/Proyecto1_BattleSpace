@@ -3,7 +3,7 @@
     <Power>
         <name>congelaEnemigos</name>
         <description>Congelar el movimiento de los enemigos en pantalla</description>
-        <time>5</time>
+        <time>5 segundos</time>
         <cost>espacio en memoria por definir</cost>
     </Power>
 </Estrategias>
