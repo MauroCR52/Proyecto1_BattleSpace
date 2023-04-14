@@ -16,7 +16,14 @@ public:
     int time;
     float cost;
 
-    static Power ReadFromXml(const char* filename) {
+    //para paged powers
+    Power();
+    virtual ~Power();
+    void asignarArchivo1(int valor);
+    void asignarArchivo2(float valor);
+
+
+   /* static Power ReadFromXml(const char* filename) {
         Power power;
         XMLDocument doc;
         doc.LoadFile(filename);
@@ -44,7 +51,11 @@ public:
         }
 
         return power;
-    }
+    }*/
+private:
+    //para paged powers
+    int* valor1;
+    float* valor2;
 };
 
 class Estrategias {

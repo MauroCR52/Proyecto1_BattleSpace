@@ -99,23 +99,13 @@ void Facil::updateInput(){
             }
         }
     }
-    //estrategia 1
+/*    //estrategia 1
     if (Keyboard::isKeyPressed(Keyboard::Q)){
-        if (!shootFasterKeyPressed){
-            shootFasterKeyPressed = true;
-            shootFaster = true;
-            this->player->setAttackCooldownMax(40.f);
-            elapsedTime = 0.f;
-        }
-        else {
-            shootFasterKeyPressed = false;
-        }
-        if (shootFaster){
-            elapsedTime += clock.restart().asMilliseconds();
-            if (elapsedTime >= 5000.f){
-                shootFaster = false;
-                this->player->setAttackCooldownMax(60.f);
-            }
+        this->player->setAttackCooldownMax(40.f);
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+        if (elapsedTime >= 5000.f){
+            this->player->setAttackCooldownMax(60.f);
         }
     }
 
@@ -155,7 +145,7 @@ void Facil::updateInput(){
         regenerateBullets = true;
         //poner el counter de balas desde 0
         //durante 5 segundos y que vuelva a la velocidad normal
-    }
+    }*/
 
 }
 

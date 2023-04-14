@@ -58,12 +58,10 @@ private:
     bool canSpawn;
 
     //para los paged power
-    bool shootFaster = false;
     bool moveFaster = false;
     bool freezeEnemies = false;
     bool regenerateBullets = false;
     float elapsedTime = 0.f;
-    bool shootFasterKeyPressed = false;
     bool wkeyPressed = false;
 
     vector<Enemy*> enemies;
