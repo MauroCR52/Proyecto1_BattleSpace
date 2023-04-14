@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Estrategias>
     <Power>
-        <name>name</name>
-        <description>description</description>
-        <time>time</time>
-        <cost>cost</cost>
+        <name>naveRapida</name>
+        <description>El jugador puede mover la nave con mayor velocidad</description>
+        <time>5</time>
+        <cost>espacio en memoria por definir</cost>
     </Power>
 </Estrategias>

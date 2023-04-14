@@ -9,12 +9,6 @@
 using namespace std;
 using namespace tinyxml2;
 
-class Estrategias {
-public:
-    int prueba();
-
-};
-
 class Power {
 public:
     string name;
@@ -22,15 +16,6 @@ public:
     int time;
     float cost;
 
-};
-
-
-struct EstratPowers{
-    Power* available_powers[2];
-};
-
-class leerxml{
-public:
     static Power ReadFromXml(const char* filename) {
         Power power;
         XMLDocument doc;
@@ -60,6 +45,13 @@ public:
 
         return power;
     }
+};
+
+class Estrategias {
+public:
+    int prueba();
+    Power* available_powers[2];
+
 };
 
 
