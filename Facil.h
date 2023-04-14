@@ -3,7 +3,6 @@
 #include <map>
 #include <string>
 #include <sstream>
-#include <SerialStream.h>
 #include <boost/asio.hpp>
 #include "Player.h"
 #include "Bullet.h"
@@ -13,7 +12,6 @@
 
 using namespace sf;
 using namespace std;
-using namespace LibSerial;
 
 class Facil {
 private:

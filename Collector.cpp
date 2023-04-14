@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 6/04/23.
-//
-
 #include "Collector.h"
 using namespace std;
 Collector::Collector() {

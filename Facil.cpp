@@ -4,7 +4,6 @@
 #include <chrono>
 #include <thread>
 
-using namespace LibSerial;
 void Facil::initWindow() {
     this->window = new RenderWindow(VideoMode(800, 600), "Facil - Battlespace", Style::Titlebar | Style::Close);
     this->window->setFramerateLimit(144);
@@ -146,6 +145,7 @@ void Facil::updateInput(){
     //estrategia 3
     if (Keyboard::isKeyPressed(Keyboard::E)){
         freezeEnemies = true;
+        
         //poner la posicion de los enemigos estatica
         //pasen 5 segundos y que vuelva a la normalidad
     }
@@ -178,7 +178,6 @@ void Facil::update() {
 
 void Facil::render() {
     this->window->clear(Color(137, 155, 176, 255));
-    //Enseña las varas
 
     this->renderBackground();
 
@@ -209,7 +208,7 @@ void Facil::initPlayer() {
 void Facil::initTextures() {
 
     this->textures["BULLET"] = new Texture();
-    this->textures["BULLET"]->loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/firebullet.png");
+    this->textures["BULLET"]->loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/firebullet.png");
 
 }
 
@@ -348,7 +347,7 @@ void Facil::updateEnemiesAndCombat() {
 }
 
 void Facil::initBulletGUI() {
-    if (!this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
+    if (!this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
         std::cout << "ERROR::GAME::Failed to load font" << endl;
 
     this->bulletsCont.setFont(this->font);
@@ -359,7 +358,7 @@ void Facil::initBulletGUI() {
 }
 
 void Facil::initBulletCollectorGUI() {
-    if (!this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
+    if (!this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
         std::cout << "ERROR::GAME::Failed to load font" << endl;
     this->collectorCont.setFont(this->font);
     this->collectorCont.setCharacterSize(25);
@@ -369,7 +368,7 @@ void Facil::initBulletCollectorGUI() {
 
 }
 void Facil::initPointGUI() {
-    if (!this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
+    if (!this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
         std::cout << "ERROR::GAME::Failed to load font" << endl;
     this->pointsCont.setFont(this->font);
     this->pointsCont.setCharacterSize(25);
@@ -380,7 +379,7 @@ void Facil::initPointGUI() {
 }
 
 void Facil::initCantEnemies() {
-    if (!this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
+    if (!this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
         std::cout << "ERROR::GAME::Failed to load font" << endl;
     this->enemiesRest.setFont(this->font);
     this->enemiesRest.setCharacterSize(25);
@@ -391,7 +390,7 @@ void Facil::initCantEnemies() {
 }
 
 void Facil::initOleadasGUI() {
-    if (!this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
+    if (!this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf"))
         std::cout << "ERROR::GAME::Failed to load font" << endl;
     this->oleadaCont.setFont(this->font);
     this->oleadaCont.setCharacterSize(25);
@@ -425,7 +424,7 @@ void Facil::renderGUI() {
 }
 
 void Facil::initBackground() {
-    if (!this->backgroundTex.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/morning_sky.jpg")){
+    if (!this->backgroundTex.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/morning_sky.jpg")){
         cout << "ERROR::FACIL::COULD NOT LOAD BACKGROUND TEXTURE" << endl;
     }
     this->background.setTexture(this->backgroundTex);

@@ -23,7 +23,7 @@ void EnemyR::initVariables() {
 }
 
 void EnemyR::initTexture() {
-    if(!this->texture.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/redenemy.png")){
+    if(!this->texture.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/redenemy.png")){
         cout << "ERROR::PLAYER::INITTEXTURE::Could not load texture file." << endl;
     }
 

@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 5/04/23.
-//
-
 #include "Enemy.h"
 using namespace std;
 
@@ -23,7 +19,7 @@ void Enemy::initVariables() {
 }
 
 void Enemy::initTexture() {
-    if(!this->texture.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/greenenemy.png")){
+    if(!this->texture.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/greenenemy.png")){
         cout << "ERROR::PLAYER::INITTEXTURE::Could not load texture file." << endl;
     }
 

@@ -79,7 +79,7 @@ void Menu::render() {
 }
 
 void Menu::initWindow() {
-    this->font.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf");
+    this->font.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/fonts/ChakraPetch-Regular.ttf");
     this->window = new RenderWindow(VideoMode(800, 600), "Menu - Battlespace", Style::Titlebar | Style::Close);
     this->window->setFramerateLimit(144);
 

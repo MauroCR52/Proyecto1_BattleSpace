@@ -1,4 +1,3 @@
-//#include "iostream"
 #include "Player.h"
 
 using namespace std;
@@ -24,7 +23,7 @@ void Player::render(RenderTarget& target) {
 void Player::initTexture() {
     //Cargamos la imagen del jugador
 
-    if(!this->texture.loadFromFile("/home/mauluna52/CLionProjects/Proyecto1_BattleSpace/Textures/player.png")){
+    if(!this->texture.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/player.png")){
         cout << "ERROR::PLAYER::INITTEXTURE::Could not load texture file." << endl;
     }
 }
