@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 6/04/23.
-//
-
 #ifndef PROYECTO1_BATTLESPACE_COLLECTOR_H
 #define PROYECTO1_BATTLESPACE_COLLECTOR_H
 
@@ -9,7 +5,6 @@
 
 
 class Bullet;
-
 
 class Collector {
 private:

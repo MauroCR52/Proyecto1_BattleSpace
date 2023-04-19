@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 5/04/23.
-//
-
 #ifndef PROYECTO1_BATTLESPACE_ENEMYR_H
 #define PROYECTO1_BATTLESPACE_ENEMYR_H
 
@@ -25,7 +21,6 @@ private:
     void initTexture();
     void initSprite();
 
-
 public:
     EnemyR(float pos_x, float pos_y);
     virtual ~EnemyR();
@@ -42,6 +37,5 @@ public:
     float getMoveY() const;
 
 };
-
 
 #endif //PROYECTO1_BATTLESPACE_ENEMYR_H

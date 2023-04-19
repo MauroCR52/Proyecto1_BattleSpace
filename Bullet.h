@@ -42,8 +42,6 @@ public:
     void operator delete(void* p);
     void* operator new(size_t size);
 
-
 };
-
 
 #endif //PROYECTO1_BATTLESPACE_BULLET_H

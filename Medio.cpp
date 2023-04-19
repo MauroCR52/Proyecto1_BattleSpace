@@ -1,5 +1,6 @@
 #include "iostream"
 #include "Medio.h"
+#include "Dificil.h"
 #include "Bullet.h"
 #include <chrono>
 #include <thread>
@@ -139,6 +140,10 @@ void Medio::updatePollEvents() {
             this->window->close();
         if (e.Event::key.code == Keyboard::Escape)
             this->window->close();
+        if (this->collector == 0 && this->oleadas == 5){
+            this->window->close();
+            Dificil dificil;
+            dificil.run();}
     }
     if (this->balas == 0){
         this->player->setDamage(5);
@@ -160,13 +165,13 @@ void Medio::updateInput() {
     if (!this->delay){
         if (this->balas != 0){
             if (this->window->isOpen() && this->player->canAttack()){
-                this->bullets.push_back(::new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y + 18.f, 1.f, 0.f,5.f));
+                this->bullets.push_back(::new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y + 18.f, 1.f, 0.f,7.f));
                 this->balas--;
             }
         }
         if (this->balas == 0 && this->collector != 0){
             if (this->window->isOpen() && this->player->canAttack()){
-                this->bullets.push_back(new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y + 18.f, 1.f, 0.f,5.f));
+                this->bullets.push_back(new Bullet(this->textures["BULLET"], this->player->getPost().x, this->player->getPost().y + 18.f, 1.f, 0.f,7.f));
                 this->collector--;
             }
         }
@@ -179,13 +184,13 @@ void Medio::initDelay() {
 }
 
 void Medio::initEnemies() {
-    this->spawnTimerMax = 180.f;
+    this->spawnTimerMax = 190.f;
     this->spawnTimer = this->spawnTimerMax;
 }
 
 void Medio::initEnemiesR() {
-    this->spawnTimerMaxR = 500.f;
-    this->spawnTimerR = 400.f;
+    this->spawnTimerMaxR = 520.f;
+    this->spawnTimerR = 420.f;
 
 }
 
@@ -193,11 +198,11 @@ void Medio::updateEnemiesRAndCombat() {
     //Aparicion de enemigos
     if (this->canSpawn){
         if (this->cant_enemigos != 0){
-            this->spawnTimerR += 0.5f;
+            this->spawnTimerR += 0.7f;
             if (this->spawnTimerR >= this->spawnTimerMaxR){
                 this->enemiesR.push_back(new EnemyR(800.f, rand() % this->window->getSize().y-60.f));
                 this->cant_enemigos--;
-                this->spawnTimerR = 0.f;
+                this->spawnTimerR = 0.5f;
             }
         }
     }
@@ -243,11 +248,11 @@ void Medio::updateEnemiesAndCombat() {
     //Aparicion de enemigos
     if (this->canSpawn){
         if (this->cant_enemigos != 0){
-            this->spawnTimer += 0.5f;
+            this->spawnTimer += 0.7f;
             if (this->spawnTimer >= this->spawnTimerMax){
                 this->enemies.push_back(new Enemy(800.f, rand() % 550));
                 this->cant_enemigos--;
-                this->spawnTimer = 0.f;
+                this->spawnTimer = 0.4f;
             }
         }
     }
@@ -389,11 +394,11 @@ void Medio::updateCollision() {
 
 void Medio::initSystems() {
     //this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
-    this->cant_enemigos = 7;
+    this->cant_enemigos = 14;
     this->oleadas = 1;
-    this->balas = 100;
+    this->balas = 120;
     this->collector = 0;
-    this->totalEnemies = 7;
+    this->totalEnemies = 14;
     this->puntos = 0;
     this->delay = false;
     this->canSpawn = true;

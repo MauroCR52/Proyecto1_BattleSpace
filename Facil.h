@@ -57,7 +57,6 @@ private:
     bool delay;
     bool canSpawn;
 
-    //para los paged power
     bool moveFaster = false;
     bool freezeEnemies = false;
     bool regenerateBullets = false;
@@ -102,8 +101,5 @@ public:
     void renderGUI();
     void renderBackground();
     void render();
-
 };
-
-
 #endif //PROYECTO1_BATTLESPACE_FACIL_H

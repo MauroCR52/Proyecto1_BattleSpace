@@ -32,6 +32,4 @@ public:
     void render();
 };
 
-
-
 #endif //PROYECTO1_BATTLESPACE_MENU_H

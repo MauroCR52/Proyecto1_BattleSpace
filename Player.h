@@ -45,5 +45,4 @@ public:
 
 };
 
-
 #endif //PROYECTO1_BATTLESPACE_PLAYER_H

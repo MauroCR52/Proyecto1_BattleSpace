@@ -1,7 +1,3 @@
-//
-// Created by mauluna52 on 5/04/23.
-//
-
 #include "EnemyR.h"
 using namespace std;
 

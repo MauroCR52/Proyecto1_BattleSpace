@@ -1,5 +1,6 @@
 #include "iostream"
 #include "Facil.h"
+#include "Medio.h"
 #include "Bullet.h"
 #include <chrono>
 #include <thread>
@@ -65,6 +66,10 @@ void Facil::updatePollEvents(){
             this->window->close();
         if (e.Event::key.code == Keyboard::Escape)
             this->window->close();
+        if (this->collector == 0 && this->oleadas == 5){
+            this->window->close();
+            Medio medio;
+            medio.run();}
     }
 
     if (this->balas == 0){
@@ -274,7 +279,7 @@ void Facil::updateEnemiesRAndCombat() {
             }
         }
         if(!enemy_removed){
-            // Remover nave cuando llega al otro lado de la ventana (Implementar buzzer de arduino)
+            // Remover nave cuando llega al otro lado de la ventana
             if (this->enemiesR[i]->getBounds().left < 0.f)
             {
                 //Enviar mensaje a Arduino

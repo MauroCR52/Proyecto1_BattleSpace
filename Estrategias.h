@@ -27,7 +27,6 @@ public:
     string* ArchivoXml3Ptr = &ArchivoXml3;
     string* ArchivoXml4Ptr = &ArchivoXml4;
 
-
     static Power ReadFromXml(const char*) {
         Power power;
         XMLDocument doc;
@@ -59,7 +58,6 @@ public:
         }
         return power;
     }
-
 };
 
 class Estrategias {
@@ -68,6 +66,5 @@ public:
     Power* available_powers[2];
 
 };
-
 
 #endif //PROYECTO1_BATTLESPACE_ESTRATEGIAS_H
