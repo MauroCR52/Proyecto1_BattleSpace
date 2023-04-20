@@ -2,6 +2,8 @@
 #include "Facil.h"
 #include "Medio.h"
 #include "Bullet.h"
+#include "Enemy.h"
+#include "EnemyR.h"
 #include <chrono>
 #include <thread>
 
@@ -104,53 +106,46 @@ void Facil::updateInput(){
             }
         }
     }
-/*    //estrategia 1
+
+    //estrategia 1 nave dispara mas rapido
     if (Keyboard::isKeyPressed(Keyboard::Q)){
         this->player->setAttackCooldownMax(40.f);
+
         elapsedTime = 0.f;
         elapsedTime += clock.restart().asMilliseconds();
-        if (elapsedTime >= 5000.f){
+        if (elapsedTime + 5000.f > elapsedTime){
             this->player->setAttackCooldownMax(60.f);
-        }
-    }
+        }}
 
-    //estrategia 2
+    //estrategia 2 nave se hace mas rapida
     if (Keyboard::isKeyPressed(Keyboard::W)){
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
 
-        if (!wkeyPressed){
-            wkeyPressed = true;
-            moveFaster = true;
+        while(elapsedTime<5000.f){
+            cout<<elapsedTime<<endl;
             this->player->setMovementSpeed(7.f);
-            elapsedTime = 0.f;
-
-        } else {
-            wkeyPressed = false;
         }
-        if (moveFaster){
-            cout << elapsedTime << endl;
-            elapsedTime += clock.restart().asMilliseconds();
-            if (elapsedTime >= 5000.f){
-                moveFaster = false;
-                this->player->setMovementSpeed(2.f);
-            }
-        }
+        this->player->setMovementSpeed(2.f);
 
     }
 
-    //estrategia 3
+    //estrategia 3 la aparicion enemigos se hacen mas lentos
     if (Keyboard::isKeyPressed(Keyboard::E)){
-        freezeEnemies = true;
-        
-        //poner la posicion de los enemigos estatica
-        //pasen 5 segundos y que vuelva a la normalidad
-    }
+        this->spawnTimer = 0.f*0.5;
+        this->spawnTimerR = 0.f*0.5;
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+        if (elapsedTime + 5000.f > elapsedTime){
+            this->spawnTimer = 0.f;
+            this->spawnTimerR = 0.f;
+        }}
 
-    //estrategia 4
+    //estrategia 4 poner el collector en cero y regenerara balas
     if (Keyboard::isKeyPressed(Keyboard::R)){
-        regenerateBullets = true;
-        //poner el counter de balas desde 0
-        //durante 5 segundos y que vuelva a la velocidad normal
-    }*/
+        this->balas = 100;
+        this->collector = 0;
+    }
 
 }
 

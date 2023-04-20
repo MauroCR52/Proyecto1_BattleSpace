@@ -9,21 +9,15 @@ EnemyR::EnemyR(float pos_x, float pos_y) {
     this->sprite.setPosition(pos_x, pos_y);
 }
 
-EnemyR::~EnemyR() {
-
-}
-
+EnemyR::~EnemyR() {}
 
 void EnemyR::initVariables() {
-    this->hp = 10;
-}
+    this->hp = 10;}
 
 void EnemyR::initTexture() {
     if(!this->texture.loadFromFile("/home/fernandez/datos2/Proyecto1_BattleSpace/Textures/redenemy.png")){
         cout << "ERROR::PLAYER::INITTEXTURE::Could not load texture file." << endl;
-    }
-
-}
+    }}
 
 void EnemyR::initSprite() {
     this->sprite.setTexture(this->texture);

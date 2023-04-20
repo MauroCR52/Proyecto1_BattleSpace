@@ -1,6 +1,7 @@
 #ifndef PROYECTO1_BATTLESPACE_FACIL_H
 #define PROYECTO1_BATTLESPACE_FACIL_H
 #include <map>
+#include <tinyxml2.h>
 #include <string>
 #include <sstream>
 #include <boost/asio.hpp>
@@ -12,6 +13,7 @@
 
 using namespace sf;
 using namespace std;
+using namespace tinyxml2;
 
 class Facil {
 private:
@@ -57,11 +59,7 @@ private:
     bool delay;
     bool canSpawn;
 
-    bool moveFaster = false;
-    bool freezeEnemies = false;
-    bool regenerateBullets = false;
     float elapsedTime = 0.f;
-    bool wkeyPressed = false;
 
     vector<Enemy*> enemies;
     vector<EnemyR*> enemiesR;
@@ -101,5 +99,6 @@ public:
     void renderGUI();
     void renderBackground();
     void render();
+
 };
 #endif //PROYECTO1_BATTLESPACE_FACIL_H
