@@ -24,7 +24,6 @@ Facil::Facil() {
     this->initBackground();
     this->initSystems();
     this->initPlayer();
-    this->initElapsedTime();
     this->initDelay();
     this->initEnemies();
     this->initEnemiesR();
@@ -121,13 +120,15 @@ void Facil::updateInput(){
 
     //estrategia 2 nave se hace mas rapida
     if (Keyboard::isKeyPressed(Keyboard::W)){
-        this->elapsedTime += 0.5f;
-        if(this->elapsedTime >= this->elapsedTimeMax){
-            this->time = true;
-            cout << this->elapsedTime << endl;
-           // this->player->setMovementSpeed(7.f);
-            this->elapsedTime = 0.f;
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+
+        while(elapsedTime<5000.f){
+            cout<<elapsedTime<<endl;
+            this->player->setMovementSpeed(7.f);
         }
+        this->player->setMovementSpeed(2.f);
+
     }
 
     //estrategia 3 la aparicion enemigos se hacen mas lentos
