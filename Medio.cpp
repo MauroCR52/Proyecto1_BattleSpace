@@ -53,13 +53,17 @@ void Medio::run() {
         if (this->oleadas <= 5){
             this->update();
         }
+        if (this->oleadas == 6){
+            this->window->close();
+            Dificil dificil;
+            dificil.run();}
         this->render();
     }
 }
 
 void Medio::update() {
 
-    //this->updateArduino();
+    this->updateArduino();
 
     this->updatePollEvents();
     this->updateInput();
@@ -140,10 +144,7 @@ void Medio::updatePollEvents() {
             this->window->close();
         if (e.Event::key.code == Keyboard::Escape)
             this->window->close();
-        if (this->collector == 0 && this->oleadas == 5){
-            this->window->close();
-            Dificil dificil;
-            dificil.run();}
+
     }
     if (this->balas == 0){
         this->player->setDamage(5);
@@ -153,7 +154,7 @@ void Medio::updatePollEvents() {
 void Medio::updateInput() {
     if (this->oleadas == 1){
         char soundAction = '1';
-        //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+        boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
     }
 
     // Mover el jugador
@@ -175,6 +176,46 @@ void Medio::updateInput() {
                 this->collector--;
             }
         }
+    }
+
+    //estrategia 1 nave dispara mas rapido
+    if (Keyboard::isKeyPressed(Keyboard::Q)){
+        this->player->setAttackCooldownMax(40.f);
+
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+        if (elapsedTime + 5000.f > elapsedTime){
+            this->player->setAttackCooldownMax(60.f);
+        }}
+
+    //estrategia 2 nave se hace mas rapida
+    if (Keyboard::isKeyPressed(Keyboard::W)){
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+
+        while(elapsedTime<5000.f){
+            cout<<elapsedTime<<endl;
+            this->player->setMovementSpeed(7.f);
+        }
+        this->player->setMovementSpeed(2.f);
+
+    }
+
+    //estrategia 3 la aparicion enemigos se hacen mas lentos
+    if (Keyboard::isKeyPressed(Keyboard::E)){
+        this->spawnTimer = 0.f*0.5;
+        this->spawnTimerR = 0.f*0.5;
+        elapsedTime = 0.f;
+        elapsedTime += clock.restart().asMilliseconds();
+        if (elapsedTime + 5000.f > elapsedTime){
+            this->spawnTimer = 0.f;
+            this->spawnTimerR = 0.f;
+        }}
+
+    //estrategia 4 poner el collector en cero y regenerara balas
+    if (Keyboard::isKeyPressed(Keyboard::R)){
+        this->balas = 100;
+        this->collector = 0;
     }
 }
 
@@ -232,7 +273,7 @@ void Medio::updateEnemiesRAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemiesR.erase(this->enemiesR.cbegin() + i);
                 char soundAction = 'S';
-                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
 
             }
             if (this->enemiesR[i]->getBounds().top < 0.f && this->enemiesR[i]->getMoveY() < 0){
@@ -282,7 +323,7 @@ void Medio::updateEnemiesAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemies.erase(this->enemies.cbegin() + i);
                 char soundAction = 'S';
-                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
             }
         }
     }
@@ -393,7 +434,7 @@ void Medio::updateCollision() {
 }
 
 void Medio::initSystems() {
-    //this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
+    this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
     this->cant_enemigos = 14;
     this->oleadas = 1;
     this->balas = 120;
@@ -415,7 +456,7 @@ void Medio::updateDelay() {
                 this->canSpawn = true;
                 this->oleadas++;
 
-                /**
+
                 if (this->oleadas == 2){
                     char soundAction = '2';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
@@ -432,7 +473,7 @@ void Medio::updateDelay() {
                     char soundAction = '5';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
                 }
-                */
+
                 this->totalEnemies += 3;
                 this->cant_enemigos = this->totalEnemies;
                 cout << "Comienza nueva oleada" << endl;
@@ -441,7 +482,7 @@ void Medio::updateDelay() {
         }
     }
 }
-/**
+
 void Medio::updateArduino() {
     boost::asio::streambuf buffer;
     boost::asio::read_until(port, buffer, '\n');
@@ -486,4 +527,4 @@ void Medio::updateArduino() {
     }
 
 }
-*/
+

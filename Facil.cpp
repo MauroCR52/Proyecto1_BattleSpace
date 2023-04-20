@@ -24,6 +24,7 @@ Facil::Facil() {
     this->initBackground();
     this->initSystems();
     this->initPlayer();
+    this->initElapsedTime();
     this->initDelay();
     this->initEnemies();
     this->initEnemiesR();
@@ -57,6 +58,10 @@ void Facil::run() {
         if (this->oleadas <= 5){
             this->update();
         }
+        if (this->oleadas == 6){
+            this->window->close();
+            Medio medio;
+            medio.run();}
         this->render();
     }
 }
@@ -68,10 +73,7 @@ void Facil::updatePollEvents(){
             this->window->close();
         if (e.Event::key.code == Keyboard::Escape)
             this->window->close();
-        if (this->collector == 0 && this->oleadas == 5){
-            this->window->close();
-            Medio medio;
-            medio.run();}
+
     }
 
     if (this->balas == 0){
@@ -83,7 +85,7 @@ void Facil::updatePollEvents(){
 void Facil::updateInput(){
     if (this->oleadas == 1){
         char soundAction = '1';
-        //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+        boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
     }
 
     // Mover el jugador
@@ -119,15 +121,13 @@ void Facil::updateInput(){
 
     //estrategia 2 nave se hace mas rapida
     if (Keyboard::isKeyPressed(Keyboard::W)){
-        elapsedTime = 0.f;
-        elapsedTime += clock.restart().asMilliseconds();
-
-        while(elapsedTime<5000.f){
-            cout<<elapsedTime<<endl;
-            this->player->setMovementSpeed(7.f);
+        this->elapsedTime += 0.5f;
+        if(this->elapsedTime >= this->elapsedTimeMax){
+            this->time = true;
+            cout << this->elapsedTime << endl;
+           // this->player->setMovementSpeed(7.f);
+            this->elapsedTime = 0.f;
         }
-        this->player->setMovementSpeed(2.f);
-
     }
 
     //estrategia 3 la aparicion enemigos se hacen mas lentos
@@ -151,7 +151,7 @@ void Facil::updateInput(){
 
 void Facil::update() {
 
-    //this->updateArduino();
+    this->updateArduino();
 
     this->updatePollEvents();
     this->updateInput();
@@ -280,7 +280,7 @@ void Facil::updateEnemiesRAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemiesR.erase(this->enemiesR.cbegin() + i);
                 char soundAction = 'S';
-                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
 
             }
             if (this->enemiesR[i]->getBounds().top < 0.f && this->enemiesR[i]->getMoveY() < 0){
@@ -330,7 +330,7 @@ void Facil::updateEnemiesAndCombat() {
                 //Enviar mensaje a Arduino
                 this->enemies.erase(this->enemies.cbegin() + i);
                 char soundAction = 'S';
-                //boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
+                boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
             }
         }
     }
@@ -441,7 +441,7 @@ void Facil::updateCollision() {
 }
 
 void Facil::initSystems() {
-    //this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
+    this->port.set_option(boost::asio::serial_port_base::baud_rate(9600));
     this->cant_enemigos = 7;
     this->oleadas = 1;
     this->balas = 100;
@@ -449,6 +449,7 @@ void Facil::initSystems() {
     this->totalEnemies = 7;
     this->puntos = 0;
     this->delay = false;
+    this->time = false;
     this->canSpawn = true;
 }
 
@@ -463,7 +464,7 @@ void Facil::updateDelay() {
                 this->canSpawn = true;
                 this->oleadas++;
 
-                /**
+
                 if (this->oleadas == 2){
                     char soundAction = '2';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
@@ -480,7 +481,7 @@ void Facil::updateDelay() {
                     char soundAction = '5';
                     boost::asio::write(port, boost::asio::buffer(&soundAction, 1));
                 }
-                */
+
                 this->totalEnemies += 3;
                 this->cant_enemigos = this->totalEnemies;
                 cout << "Comienza nueva oleada" << endl;
@@ -489,7 +490,7 @@ void Facil::updateDelay() {
         }
     }
 }
-/**
+
 void Facil::updateArduino() {
     boost::asio::streambuf buffer;
     boost::asio::read_until(port, buffer, '\n');
@@ -534,7 +535,3 @@ void Facil::updateArduino() {
     }
 
 }
-*/
-
-
-

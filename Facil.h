@@ -31,8 +31,8 @@ private:
     Text oleadaCont;
     Text pointsCont;
 
-    //boost::asio::io_service io;
-    //boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
+    boost::asio::io_service io;
+    boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
     string input;
 
     Texture backgroundTex;
@@ -58,6 +58,7 @@ private:
 
     bool delay;
     bool canSpawn;
+    bool time;
 
     float elapsedTime = 0.f;
 
@@ -85,7 +86,7 @@ public:
     void run();
     void updatePollEvents();
 
-    //void updateArduino();
+    void updateArduino();
 
     void updateInput();
     void updateGUI();

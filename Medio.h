@@ -29,8 +29,8 @@ private:
     Text oleadaCont;
     Text pointsCont;
 
-    //boost::asio::io_service io;
-    //boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
+    boost::asio::io_service io;
+    boost::asio::serial_port port = boost::asio::serial_port(io, "/dev/ttyACM0");
     string input;
 
     Texture backgroundTex;
@@ -57,12 +57,8 @@ private:
     bool delay;
     bool canSpawn;
 
-    //para los paged power
-    //bool moveFaster = false;
-    //bool freezeEnemies = false;
-    //bool regenerateBullets = false;
-    //float elapsedTime = 0.f;
-    //bool wkeyPressed = false;
+    float elapsedTime = 0.f;
+
 
     vector<Enemy*> enemies;
     vector<EnemyR*> enemiesR;
@@ -89,7 +85,7 @@ public:
     void updatePollEvents();
 
 
-    //void updateArduino();
+    void updateArduino();
 
     void updateInput();
     void updateGUI();
